@@ -66,13 +66,48 @@ nav {
 
 /* HERO */
 .hero {
-  height: 100vh; display: flex; flex-direction: column;
-  justify-content: flex-end; padding: 0 48px 80px; position: relative;
+  height: 80vh;
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 64px;
+  position: relative;
+  background-image: url('https://raw.githubusercontent.com/d1eg0dev/diegolarios/main/hero_background.jpg');
+  background-size: cover;
+  background-position: center;
 }
+
 .hero-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(180deg, rgba(250,250,250,0) 40%, rgba(250,250,250,0.95) 100%),
-              linear-gradient(135deg, #E8E4DF 0%, #D5D0CA 100%);
+  background: linear-gradient(180deg, 
+    rgba(0,0,0,0) 30%, 
+    rgba(0,0,0,0.65) 100%
+  );
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-location {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  color: #ffffff;
+}
+
+.hero-title span {
+  color: var(--gold, #C9A355); /* o el color accent que uses */
+}
+
+.hero-sub {
+  color: rgba(255,255,255,0.75);
+}
   z-index: 0;
 }
 .hero-content { position: relative; z-index: 2; max-width: 800px; }
@@ -246,7 +281,7 @@ footer {
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="background-image:url('https://raw.githubusercontent.com/d1eg0dev/diegolarios/main/hero_background.jpg');background-size:cover;background-position:center;"> 
+<section class="hero"> 
   <div class="hero-bg"></div>
   <div class="hero-content">
     <h1 class="hero-title" data-en>
@@ -298,8 +333,7 @@ footer {
 
   <div class="portfolio-grid reveal">
     <div class="portfolio-item">
-<div class="ph"><span>Image</span><span class="ph-title">Casa Tauro</span></div>ahora aqui quiero poner casatauro.jpg      
-      <div class="portfolio-overlay"><div class="portfolio-overlay-title">Casa Tauro</div><div class="portfolio-overlay-cat">Full Digital Service Suite</div></div>
+    <section class="hero" style="background-image:url('https://raw.githubusercontent.com/d1eg0dev/diegolarios/main/hero_background.jpg');background-size:cover;background-position:center;">      <div class="portfolio-overlay"><div class="portfolio-overlay-title">Casa Tauro</div><div class="portfolio-overlay-cat">Full Digital Service Suite</div></div>
     </div>
     <div class="portfolio-item">
 <div class="ph">
