@@ -5,13 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diego Larios — Diseñador · WD Studio · LA SALIDA.</title>
 <meta name="description" content="Diego Larios. Diseño, código y una vida diseñada para trabajarla desde cualquier lugar del mundo.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   TOKENS  —  BUCKET × Nolan Wells  ·  diegolarios.com
-   ============================================================ */
+
 :root{
   --cream:#F1ECE4;
   --cream-2:#E7E1D6;
@@ -25,7 +20,6 @@
   --line-cream:rgba(241,236,228,.16);
 
   --sans:'Helvetica Neue',Helvetica,'Inter','Segoe UI',Arial,sans-serif;
-  --hand:'Caveat',cursive;
 
   --eyebrow:.72rem;
   --pad-x:clamp(1.4rem,5vw,6rem);
@@ -68,7 +62,6 @@ h1,h2,h3{font-weight:400;letter-spacing:-.015em;line-height:1.08}
 }
 h2{font-size:clamp(1.5rem,3vw,2.3rem)}
 h3{font-size:clamp(1.1rem,1.7vw,1.35rem);font-weight:500;letter-spacing:-.01em}
-.sign{font-family:var(--hand);font-weight:500;line-height:1}
 p{max-width:62ch}
 .lead{font-size:clamp(1.05rem,1.4vw,1.25rem);color:rgba(26,26,23,.78)}
 .muted{color:var(--stone)}
@@ -150,10 +143,11 @@ p{max-width:62ch}
 .hero__bg{
   position:absolute;inset:0;z-index:-2;
   background:radial-gradient(120% 90% at 70% 12%, #1c4a3f 0%, var(--emerald-deep) 46%, #08170f 100%);
+  background-size:cover;background-position:center;
 }
 .hero__bg::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,15,10,.15) 0%,rgba(8,15,10,0) 30%,rgba(8,15,10,.5) 100%);
+  background:linear-gradient(180deg,rgba(8,15,10,.2) 0%,rgba(8,15,10,0) 32%,rgba(8,15,10,.55) 100%);
 }
 .hero__inner{position:relative;max-width:var(--maxw);margin:0 auto;width:100%}
 .hero .eyebrow{color:rgba(241,236,228,.7);margin-bottom:1.4rem}
@@ -162,7 +156,7 @@ p{max-width:62ch}
 .hero__actions{margin-top:2.2rem;display:flex;gap:1rem;flex-wrap:wrap}
 .hero__loc{
   position:absolute;right:0;bottom:0;display:flex;align-items:center;gap:.55rem;
-  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,228,.7);
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,228,.75);
 }
 .hero__loc .dot{width:7px;height:7px;border-radius:50%;background:#7ea892;box-shadow:0 0 0 0 rgba(126,168,146,.6);animation:pulse 2.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(126,168,146,.55)}70%{box-shadow:0 0 0 10px rgba(126,168,146,0)}100%{box-shadow:0 0 0 0 rgba(126,168,146,0)}}
@@ -176,7 +170,6 @@ p{max-width:62ch}
 .about__body .eyebrow{margin-bottom:1.4rem}
 .about__body h2{max-width:18ch;margin-bottom:1.6rem}
 .about__body p+p{margin-top:1.1rem}
-.about__body .sign{font-size:2.7rem;color:var(--ink);margin-top:1.6rem}
 
 /* ============================================================
    LO QUE HAGO
@@ -206,27 +199,12 @@ p{max-width:62ch}
 .work__head h2{max-width:18ch;margin-top:1rem}
 .gallery{columns:3;column-gap:14px}
 .gallery figure{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden}
-.gallery .ph{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.gallery figure:hover .ph{transform:scale(1.04)}
-.gallery figcaption{
-  position:absolute;left:0;bottom:0;right:0;
-  padding:1rem;display:flex;justify-content:space-between;
-  font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--cream);opacity:0;transform:translateY(6px);transition:.4s;
-  background:linear-gradient(180deg,transparent,rgba(8,15,10,.75));
-}
-.gallery figure:hover figcaption{opacity:1;transform:translateY(0)}
+.gallery .ph img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.gallery figure:hover .ph img{transform:scale(1.04)}
 
+/* contenedor de imagen con recorte cover */
 .ph{width:100%;position:relative;overflow:hidden;background:var(--emerald-deep)}
-.ph::after{content:attr(data-ph);position:absolute;top:10px;left:12px;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(241,236,228,.4)}
-.ph--dusk{background:linear-gradient(160deg,#1c4a3f,#0f2a22 70%,#08170f)}
-.ph--water{background:linear-gradient(200deg,#0a1a1a,#123a37 60%,#1e5049)}
-.ph--stone{background:linear-gradient(160deg,#9a8b78,#6f6052)}
-.ph--sand{background:linear-gradient(160deg,#d9cdb9,#b7a892)}
-.ph--noir{background:linear-gradient(160deg,#1c2b26,#111)}
-.ph--cream{background:linear-gradient(160deg,#f3eee6,#e2dbcd)}
-.ph--cream::after{color:rgba(26,26,23,.32)}
-.ph--sand::after,.ph--stone::after{color:rgba(26,26,23,.4)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .r45{aspect-ratio:4/5}.r11{aspect-ratio:1/1}.r34{aspect-ratio:3/4}.r43{aspect-ratio:4/3}.r169{aspect-ratio:16/10}
 
 /* ============================================================
@@ -270,7 +248,7 @@ p{max-width:62ch}
 .capture .btn{width:100%;justify-content:center;margin-top:.5rem}
 .capture .fine{font-size:.72rem;color:var(--stone);margin-top:.9rem;text-align:center}
 .capture__done{display:none;text-align:center;padding:1rem 0}
-.capture__done .sign{font-size:2.6rem;color:var(--emerald);display:block;margin-bottom:.4rem}
+.capture__done .done-title{display:block;font-size:1.5rem;color:var(--emerald);margin-bottom:.4rem;font-weight:500;letter-spacing:-.01em}
 .capture.sent form{display:none}
 .capture.sent .capture__done{display:block}
 
@@ -327,7 +305,7 @@ p{max-width:62ch}
 @media(max-width:1000px){
   .gallery{columns:2}
   .about__grid{grid-template-columns:1fr;gap:2.4rem}
-  .about__portrait{aspect-ratio:16/10;max-height:380px}
+  .about__portrait{aspect-ratio:16/10;max-height:420px}
   .salida__grid{grid-template-columns:1fr;gap:2.6rem}
   .proof__strip{grid-template-columns:repeat(2,1fr)}
 }
@@ -335,6 +313,7 @@ p{max-width:62ch}
   .nav__links{display:none}
   .menu-btn{display:block}
   .do__cols{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
   .post{grid-template-columns:1fr;gap:.5rem}
   .post .read{justify-self:start}
   .gallery{columns:1}
@@ -376,7 +355,7 @@ p{max-width:62ch}
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="hero__bg"></div>
+  <div class="hero__bg" style="background-image:linear-gradient(rgba(8,15,10,.35),rgba(8,15,10,.55)),url('images/hero.JPG')"></div>
   <div class="hero__inner">
     <p class="eyebrow reveal"><span class="es">Diseñador · Fundador de WD&nbsp;Studio</span><span class="en">Designer · Founder of WD&nbsp;Studio</span></p>
     <h1 class="display reveal" data-delay="1">
@@ -401,7 +380,9 @@ p{max-width:62ch}
 <!-- SOBRE MÍ -->
 <section class="about section" id="about">
   <div class="wrap about__grid">
-    <div class="about__portrait ph ph--stone r45 reveal" data-ph="Retrato — Diego"></div>
+    <div class="about__portrait ph r45 reveal">
+      <img src="images/diego-retrato.jpg" alt="Diego Larios">
+    </div>
     <div class="about__body">
       <p class="eyebrow reveal"><span class="es">Sobre mí</span><span class="en">About</span></p>
       <h2 class="reveal" data-delay="1"><span class="es">Diseñé una vida que se puede compartir.</span><span class="en">I designed a life worth sharing.</span></h2>
@@ -409,7 +390,6 @@ p{max-width:62ch}
         <p><span class="es">Soy Diego Larios. Llevo más de ocho años en desarrollo y diseño, y fundé WD&nbsp;Studio Agency — donde construyo soluciones digitales hechas a la medida para cada cliente, desde sitios y branding hasta fotografía y video de propiedades de lujo.</span><span class="en">I'm Diego Larios. I've spent 8+ years in development and design, and I founded WD&nbsp;Studio Agency — where I build custom digital solutions for each client, from websites and branding to luxury real-estate photography and video.</span></p>
         <p><span class="es">En 2026 tomé una decisión: diseñar mi vida para trabajarla desde cualquier lugar del mundo. Lo hice para demostrar que se puede vivir y trabajar de otra forma — y para abrir la puerta a quien quiera lo mismo. Este sitio es esa historia, y una invitación a caminar la tuya.</span><span class="en">In 2026 I made a decision: to design my life so I could work it from anywhere in the world. I did it to prove there's another way to live and work — and to open the door for anyone who wants the same. This site is that story, and an invitation to walk yours.</span></p>
       </div>
-      <img class="reveal" data-delay="2" src="firma.png" alt="Diego Larios" style="height:60px;width:auto;margin-top:1.6rem;opacity:.9">
     </div>
   </div>
 </section>
@@ -460,15 +440,18 @@ p{max-width:62ch}
       <p class="muted" style="max-width:32ch"><span class="es">Proyectos de WD Studio y la vida que los sostiene, en un mismo lugar.</span><span class="en">WD Studio projects and the life behind them, in one place.</span></p>
     </div>
     <div class="gallery reveal" data-delay="1">
-      <figure><div class="ph ph--dusk r34" data-ph="Proyecto"></div><figcaption><span>WD Studio</span><span>Web · 2026</span></figcaption></figure>
-      <figure><div class="ph ph--water r11" data-ph="Lugar"></div><figcaption><span><span class="es">Lugar</span><span class="en">Place</span></span><span>Bali</span></figcaption></figure>
-      <figure><div class="ph ph--noir r45" data-ph="Branding"></div><figcaption><span>Branding</span><span>2025</span></figcaption></figure>
-      <figure><div class="ph ph--sand r43" data-ph="Foto"></div><figcaption><span><span class="es">Propiedad</span><span class="en">Property</span></span><span>México</span></figcaption></figure>
-      <figure><div class="ph ph--stone r34" data-ph="Proyecto"></div><figcaption><span>WD Studio</span><span>App · 2026</span></figcaption></figure>
-      <figure><div class="ph ph--dusk r11" data-ph="Lugar"></div><figcaption><span><span class="es">Lugar</span><span class="en">Place</span></span><span>Seúl</span></figcaption></figure>
-      <figure><div class="ph ph--cream r45" data-ph="Editorial"></div><figcaption><span>Editorial</span><span>2025</span></figcaption></figure>
-      <figure><div class="ph ph--water r43" data-ph="Lugar"></div><figcaption><span><span class="es">Lugar</span><span class="en">Place</span></span><span>Atenas</span></figcaption></figure>
-      <figure><div class="ph ph--noir r34" data-ph="Proyecto"></div><figcaption><span>WD Studio</span><span>Brand · 2026</span></figcaption></figure>
+      <figure><div class="ph r34"><img loading="lazy" src="images/DSC_0513.JPG" alt=""></div></figure>
+      <figure><div class="ph r11"><img loading="lazy" src="images/AAJA8391.JPG" alt=""></div></figure>
+      <figure><div class="ph r45"><img loading="lazy" src="images/ny_skate.jpg" alt=""></div></figure>
+      <figure><div class="ph r43"><img loading="lazy" src="images/AFTY6264.JPG" alt=""></div></figure>
+      <figure><div class="ph r34"><img loading="lazy" src="images/DSC_5435.JPG" alt=""></div></figure>
+      <figure><div class="ph r11"><img loading="lazy" src="images/CGTW5727.JPG" alt=""></div></figure>
+      <figure><div class="ph r45"><img loading="lazy" src="images/egypt-tunnel.jpg" alt=""></div></figure>
+      <figure><div class="ph r43"><img loading="lazy" src="images/08110015.JPG" alt=""></div></figure>
+      <figure><div class="ph r34"><img loading="lazy" src="images/DSC_9942.JPG" alt=""></div></figure>
+      <figure><div class="ph r11"><img loading="lazy" src="images/ADKU2555.JPG" alt=""></div></figure>
+      <figure><div class="ph r45"><img loading="lazy" src="images/egypt-film.jpg" alt=""></div></figure>
+      <figure><div class="ph r43"><img loading="lazy" src="images/DSC08048.JPEG" alt=""></div></figure>
     </div>
   </div>
 </section>
@@ -480,16 +463,16 @@ p{max-width:62ch}
       <p class="eyebrow"><span class="es">La prueba</span><span class="en">The proof</span></p>
       <h2><span class="es">Todo está en el trabajo.</span><span class="en">It's all in the work.</span></h2>
     </div>
-     <div class="stats reveal" data-delay="1">
-        <div class="stat"><div class="n">8<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Años diseñando</span><span class="en">Years designing</span></div></div>
-        <div class="stat"><div class="n">58<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Proyectos</span><span class="en">Projects</span></div></div>
-        <div class="stat"><div class="n">17<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Países</span><span class="en">Countries</span></div></div>
-      </div>
+    <div class="stats reveal" data-delay="1">
+      <div class="stat"><div class="n">8<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Años diseñando</span><span class="en">Years designing</span></div></div>
+      <div class="stat"><div class="n">58<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Proyectos</span><span class="en">Projects</span></div></div>
+      <div class="stat"><div class="n">17<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Países</span><span class="en">Countries</span></div></div>
+    </div>
     <div class="proof__strip reveal" data-delay="2">
-      <div class="ph ph--water r11" data-ph="Foto"></div>
-      <div class="ph ph--sand r11" data-ph="Foto"></div>
-      <div class="ph ph--dusk r11" data-ph="Foto"></div>
-      <div class="ph ph--stone r11" data-ph="Foto"></div>
+      <div class="ph r11"><img loading="lazy" src="images/DJI_0396.JPG" alt=""></div>
+      <div class="ph r11"><img loading="lazy" src="images/egypt.jpg" alt=""></div>
+      <div class="ph r11"><img loading="lazy" src="images/ny.jpg" alt=""></div>
+      <div class="ph r11"><img loading="lazy" src="images/hotel-die.jpg" alt=""></div>
     </div>
   </div>
 </section>
@@ -526,7 +509,7 @@ p{max-width:62ch}
         <p class="fine"><span class="es">Solo el primer paso, directo a tu correo.</span><span class="en">Just the first step, straight to your inbox.</span></p>
       </form>
       <div class="capture__done">
-        <span class="sign"><span class="es">¡Vas en camino!</span><span class="en">You're on your way!</span></span>
+        <span class="done-title"><span class="es">¡Vas en camino!</span><span class="en">You're on your way!</span></span>
         <p><span class="es">Revisa tu correo en los próximos minutos. Tu guía va para allá.</span><span class="en">Check your inbox in a few minutes. Your guide is on the way.</span></p>
       </div>
     </div>
