@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diego Larios — Diseñador · WD Studio · LA SALIDA.</title>
+<meta name="description" content="Diego Larios. Diseño, código y una vida diseñada para trabajarla desde cualquier lugar del mundo.">
+<style>
+
+:root{
+  --cream:#F1ECE4;
+  --cream-2:#E7E1D6;
+  --emerald:#143A32;
+  --emerald-deep:#0F2A22;
+  --emerald-soft:#20574B;
+  --ink:#1A1A17;
+  --noir:#111111;
+  --stone:#8A7B6A;
+  --line:rgba(26,26,23,.14);
+  --line-cream:rgba(241,236,228,.16);
+
+  --sans:'Helvetica Neue',Helvetica,'Inter','Segoe UI',Arial,sans-serif;
+
+  --eyebrow:.72rem;
+  --pad-x:clamp(1.4rem,5vw,6rem);
+  --sec-y:clamp(5rem,11vw,10rem);
+  --maxw:1320px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  font-size:1.0625rem;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--emerald);color:var(--cream)}
+
+/* bilingüe */
+html[data-lang="es"] .en{display:none}
+html[data-lang="en"] .es{display:none}
+
+/* ---------- tipografía base ---------- */
+.eyebrow{
+  font-size:var(--eyebrow);
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--stone);
+}
+h1,h2,h3{font-weight:400;letter-spacing:-.015em;line-height:1.08}
+.display{
+  font-size:clamp(2rem,5vw,3.6rem);
+  line-height:1.06;
+  letter-spacing:-.02em;
+  font-weight:400;
+}
+h2{font-size:clamp(1.5rem,3vw,2.3rem)}
+h3{font-size:clamp(1.1rem,1.7vw,1.35rem);font-weight:500;letter-spacing:-.01em}
+p{max-width:62ch}
+.lead{font-size:clamp(1.05rem,1.4vw,1.25rem);color:rgba(26,26,23,.78)}
+.muted{color:var(--stone)}
+
+/* ---------- utilidades ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad-x);padding-right:var(--pad-x)}
+.section{padding-top:var(--sec-y);padding-bottom:var(--sec-y)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-size:.88rem;letter-spacing:.02em;font-weight:500;
+  padding:.9em 1.55em;border-radius:100px;
+  border:1px solid var(--ink);
+  transition:.35s cubic-bezier(.2,.7,.2,1);
+  cursor:pointer;background:transparent;color:var(--ink);
+  font-family:inherit;
+}
+.btn:hover{background:var(--ink);color:var(--cream)}
+.btn--solid{background:var(--emerald);border-color:var(--emerald);color:var(--cream)}
+.btn--solid:hover{background:var(--emerald-deep);border-color:var(--emerald-deep)}
+.btn--ghost-light{border-color:var(--line-cream);color:var(--cream)}
+.btn--ghost-light:hover{background:var(--cream);color:var(--emerald-deep);border-color:var(--cream)}
+.arrow{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.05rem var(--pad-x);
+  transition:.4s ease;color:var(--cream);
+  mix-blend-mode:difference;
+}
+.nav.scrolled{
+  mix-blend-mode:normal;color:var(--ink);
+  background:rgba(241,236,228,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding-top:.8rem;padding-bottom:.8rem;
+}
+.nav__brand b{font-weight:500;font-size:.98rem;letter-spacing:.08em;text-transform:uppercase}
+.nav__links{display:flex;gap:2rem;align-items:center}
+.nav__links a{font-size:.86rem;letter-spacing:.04em;position:relative;padding:.2em 0}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:currentColor;transition:width .3s}
+.nav__links a:hover::after{width:100%}
+.nav__right{display:flex;align-items:center;gap:1.4rem}
+.lang{
+  font-size:.8rem;letter-spacing:.12em;font-weight:500;
+  border:1px solid currentColor;border-radius:100px;
+  padding:.35em .7em;background:transparent;color:inherit;cursor:pointer;
+  font-family:inherit;transition:.3s;
+}
+.lang:hover{opacity:.65}
+.menu-btn{display:none;background:none;border:none;color:inherit;cursor:pointer;font-family:inherit;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+
+.mobile-menu{
+  position:fixed;inset:0;z-index:55;background:var(--emerald-deep);color:var(--cream);
+  display:flex;flex-direction:column;justify-content:center;gap:1.2rem;
+  padding:var(--pad-x);
+  transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1);
+}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{font-size:clamp(1.8rem,8vw,2.6rem);font-weight:400;letter-spacing:-.02em;opacity:.9}
+.mobile-menu a:hover{opacity:1}
+.mobile-menu .mm-foot{margin-top:2rem;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(241,236,228,.5)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  color:var(--cream);
+  padding:0 var(--pad-x) clamp(2.5rem,6vw,5rem);
+  overflow:hidden;
+}
+.hero__bg{
+  position:absolute;inset:0;z-index:-2;
+  background:radial-gradient(120% 90% at 70% 12%, #1c4a3f 0%, var(--emerald-deep) 46%, #08170f 100%);
+  background-size:cover;background-position:center;
+}
+.hero__bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,15,10,.2) 0%,rgba(8,15,10,0) 32%,rgba(8,15,10,.55) 100%);
+}
+.hero__inner{position:relative;max-width:var(--maxw);margin:0 auto;width:100%}
+.hero .eyebrow{color:rgba(241,236,228,.7);margin-bottom:1.4rem}
+.hero .display{max-width:20ch}
+.hero__sub{margin-top:1.6rem;max-width:46ch;color:rgba(241,236,228,.82);font-size:clamp(1rem,1.3vw,1.15rem)}
+.hero__actions{margin-top:2.2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.hero__loc{
+  position:absolute;right:0;bottom:0;display:flex;align-items:center;gap:.55rem;
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,228,.75);
+}
+.hero__loc .dot{width:7px;height:7px;border-radius:50%;background:#7ea892;box-shadow:0 0 0 0 rgba(126,168,146,.6);animation:pulse 2.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(126,168,146,.55)}70%{box-shadow:0 0 0 10px rgba(126,168,146,0)}100%{box-shadow:0 0 0 0 rgba(126,168,146,0)}}
+
+/* ============================================================
+   SOBRE MÍ
+   ============================================================ */
+.about{background:var(--cream)}
+.about__grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.about__portrait{aspect-ratio:4/5}
+.about__body .eyebrow{margin-bottom:1.4rem}
+.about__body h2{max-width:18ch;margin-bottom:1.6rem}
+.about__body p+p{margin-top:1.1rem}
+
+/* ============================================================
+   LO QUE HAGO
+   ============================================================ */
+.do{background:var(--noir);color:var(--cream)}
+.do .eyebrow{color:rgba(241,236,228,.55)}
+.do__head{margin-bottom:clamp(2.5rem,5vw,4rem);max-width:26ch}
+.do__head h2{margin-top:1rem}
+.do__cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-cream);border:1px solid var(--line-cream)}
+.do__card{background:var(--noir);padding:clamp(1.8rem,3.5vw,3.2rem);min-height:340px;display:flex;flex-direction:column}
+.do__card .num{font-size:.75rem;letter-spacing:.2em;color:var(--stone)}
+.do__card h3{margin:1.6rem 0 .9rem}
+.do__card p{color:rgba(241,236,228,.68);flex:1}
+.do__card .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+.do__card .tag{font-size:.74rem;letter-spacing:.06em;padding:.4em .8em;border:1px solid var(--line-cream);border-radius:100px;color:rgba(241,236,228,.8)}
+.do__card--salida{background:var(--emerald)}
+.do__card--salida .num,.do__card--salida .tag{color:rgba(241,236,228,.85);border-color:var(--line-cream)}
+.do__card--salida p{color:rgba(241,236,228,.85)}
+.do__card .go{margin-top:1.6rem;font-size:.85rem;letter-spacing:.04em;display:inline-flex;gap:.5em;align-items:center;color:var(--cream)}
+.do__card .go:hover .arrow{transform:translateX(3px)}
+
+/* ============================================================
+   TRABAJO
+   ============================================================ */
+.work{background:var(--cream)}
+.work__head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:clamp(2rem,4vw,3.5rem);flex-wrap:wrap}
+.work__head h2{max-width:18ch;margin-top:1rem}
+.gallery{columns:3;column-gap:14px}
+.gallery figure{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden}
+.gallery .ph img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.gallery figure:hover .ph img{transform:scale(1.04)}
+
+/* contenedor de imagen con recorte cover */
+.ph{width:100%;position:relative;overflow:hidden;background:var(--emerald-deep)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.r45{aspect-ratio:4/5}.r11{aspect-ratio:1/1}.r34{aspect-ratio:3/4}.r43{aspect-ratio:4/3}.r169{aspect-ratio:16/10}
+
+/* ============================================================
+   PRUEBA SOCIAL
+   ============================================================ */
+.proof{background:var(--cream-2)}
+.proof__head{margin-bottom:clamp(2.5rem,5vw,4rem)}
+.proof__head h2{max-width:16ch;margin-top:1rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{background:var(--cream-2);padding:clamp(1.6rem,3vw,2.6rem) 1rem;text-align:left}
+.stat .n{font-size:clamp(2.4rem,6vw,4rem);font-weight:400;letter-spacing:-.03em;line-height:1}
+.stat .l{margin-top:.6rem;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone)}
+.proof__strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(2rem,4vw,3rem)}
+
+/* ============================================================
+   LA SALIDA
+   ============================================================ */
+.salida{background:var(--emerald);color:var(--cream);position:relative;overflow:hidden}
+.salida .eyebrow{color:rgba(241,236,228,.6)}
+.salida__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
+.salida__title{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.03em;line-height:1;margin:1rem 0 1.4rem}
+.salida__tag{font-size:clamp(1.15rem,1.8vw,1.5rem);max-width:24ch;color:rgba(241,236,228,.92);line-height:1.3}
+.salida__for{font-size:clamp(1.25rem,2vw,1.7rem);color:var(--cream);line-height:1.25;margin:2.2rem 0 1.2rem;max-width:22ch;font-weight:400}
+.salida__body p{color:rgba(241,236,228,.82)}
+.salida__list{list-style:none;margin:1.8rem 0 0}
+.salida__list li{display:flex;gap:.9rem;padding:.85rem 0;border-top:1px solid var(--line-cream);font-size:.98rem;color:rgba(241,236,228,.9)}
+.salida__list li::before{content:"";flex:none;width:7px;height:7px;margin-top:.6em;border-radius:50%;background:var(--cream)}
+
+.capture{background:var(--cream);color:var(--ink);border-radius:6px;padding:clamp(1.8rem,3vw,2.6rem)}
+.capture .k{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)}
+.capture h3{margin:.7rem 0 .4rem;font-size:clamp(1.25rem,1.9vw,1.6rem)}
+.capture p{font-size:.92rem;color:rgba(26,26,23,.7);margin-bottom:1.4rem}
+.field{margin-bottom:.8rem}
+.field input{
+  width:100%;font-family:inherit;font-size:.95rem;
+  padding:.9em 1em;border:1px solid var(--line);border-radius:4px;
+  background:var(--cream);color:var(--ink);transition:.25s;
+}
+.field input:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px rgba(20,58,50,.12)}
+.field input::placeholder{color:rgba(26,26,23,.4)}
+.capture .btn{width:100%;justify-content:center;margin-top:.5rem}
+.capture .fine{font-size:.72rem;color:var(--stone);margin-top:.9rem;text-align:center}
+.capture__done{display:none;text-align:center;padding:1rem 0}
+.capture__done .done-title{display:block;font-size:1.5rem;color:var(--emerald);margin-bottom:.4rem;font-weight:500;letter-spacing:-.01em}
+.capture.sent form{display:none}
+.capture.sent .capture__done{display:block}
+
+/* ============================================================
+   JOURNAL
+   ============================================================ */
+.journal{background:var(--noir);color:var(--cream)}
+.journal .eyebrow{color:rgba(241,236,228,.55)}
+.journal__head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2rem,4vw,3.5rem)}
+.journal__head h2{margin-top:1rem}
+.posts{display:grid;gap:1px;background:var(--line-cream);border-top:1px solid var(--line-cream)}
+.post{
+  background:var(--noir);padding:clamp(1.4rem,3vw,2.2rem) 0;
+  display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1rem,4vw,3rem);align-items:baseline;
+  transition:.4s;
+}
+.post:hover{background:#171717;padding-left:clamp(.6rem,2vw,1.4rem);padding-right:clamp(.6rem,2vw,1.4rem)}
+.post .date{font-size:.76rem;letter-spacing:.1em;color:var(--stone);text-transform:uppercase;white-space:nowrap}
+.post h3{font-size:clamp(1.15rem,2.2vw,1.6rem);max-width:26ch;font-weight:400}
+.post .read{font-size:.8rem;letter-spacing:.04em;color:rgba(241,236,228,.6);display:inline-flex;gap:.5em;align-items:center;white-space:nowrap}
+.post:hover .read{color:var(--cream)}
+.post:hover .arrow{transform:translateX(3px)}
+
+/* ============================================================
+   CONTACTO
+   ============================================================ */
+.contact{background:var(--cream);text-align:center;padding-top:var(--sec-y);padding-bottom:calc(var(--sec-y) - 1rem)}
+.contact .eyebrow{margin-bottom:1.6rem}
+.contact h2{font-size:clamp(1.9rem,4vw,3.2rem);letter-spacing:-.02em;line-height:1.05;max-width:18ch;margin:0 auto 2rem}
+.contact__mail{display:inline-block;font-size:clamp(1.1rem,2.2vw,1.6rem);border-bottom:1px solid var(--ink);padding-bottom:.15em;transition:.3s}
+.contact__mail:hover{color:var(--emerald);border-color:var(--emerald)}
+.contact__links{display:flex;gap:1.8rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+.contact__links a{color:var(--stone)}
+.contact__links a:hover{color:var(--ink)}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:var(--emerald-deep);color:rgba(241,236,228,.75);padding:clamp(2.5rem,5vw,3.5rem) var(--pad-x)}
+.footer__in{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.footer__brand b{color:var(--cream);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem}
+.footer small{font-size:.76rem;letter-spacing:.04em}
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+[data-delay="1"]{transition-delay:.08s}[data-delay="2"]{transition-delay:.16s}[data-delay="3"]{transition-delay:.24s}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1000px){
+  .gallery{columns:2}
+  .about__grid{grid-template-columns:1fr;gap:2.4rem}
+  .about__portrait{aspect-ratio:16/10;max-height:420px}
+  .salida__grid{grid-template-columns:1fr;gap:2.6rem}
+  .proof__strip{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  .nav__links{display:none}
+  .menu-btn{display:block}
+  .do__cols{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .post{grid-template-columns:1fr;gap:.5rem}
+  .post .read{justify-self:start}
+  .gallery{columns:1}
+  .hero__loc{position:static;margin-top:2.2rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="Diego Larios — inicio"><b>Diego Larios</b></a>
+  <div class="nav__links">
+    <a href="#work"><span class="es">Trabajo</span><span class="en">Work</span></a>
+    <a href="#salida">LA&nbsp;SALIDA.</a>
+    <a href="#journal">Journal</a>
+    <a href="#about"><span class="es">Sobre mí</span><span class="en">About</span></a>
+    <a href="#contact"><span class="es">Contacto</span><span class="en">Contact</span></a>
+  </div>
+  <div class="nav__right">
+    <button class="lang" id="lang" aria-label="Switch language">EN</button>
+    <button class="menu-btn" id="menuBtn"><span class="es">Menú</span><span class="en">Menu</span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#work" data-close><span class="es">Trabajo</span><span class="en">Work</span></a>
+  <a href="#salida" data-close>LA SALIDA.</a>
+  <a href="#journal" data-close>Journal</a>
+  <a href="#about" data-close><span class="es">Sobre mí</span><span class="en">About</span></a>
+  <a href="#contact" data-close><span class="es">Contacto</span><span class="en">Contact</span></a>
+  <div class="mm-foot">wdstudio.agency · @foreverrjung</div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero__bg" style="background-image:linear-gradient(rgba(8,15,10,.35),rgba(8,15,10,.55)),url('images/hero.JPG')"></div>
+  <div class="hero__inner">
+    <p class="eyebrow reveal"><span class="es">Diseñador · Fundador de WD&nbsp;Studio</span><span class="en">Designer · Founder of WD&nbsp;Studio</span></p>
+    <h1 class="display reveal" data-delay="1">
+      <span class="es">En 2026 diseñé mi vida<br>para trabajarla viajando el mundo.</span>
+      <span class="en">In 2026 I designed my life<br>to work it while traveling the world.</span>
+    </h1>
+    <p class="hero__sub reveal" data-delay="2">
+      <span class="es">Ocho años construyendo marcas. Ahora, desde donde amanezca — con una laptop, un poco de código y mucho criterio.</span>
+      <span class="en">Eight years building brands. Now, from wherever the sun rises — with a laptop, some code, and a lot of judgment.</span>
+    </p>
+    <div class="hero__actions reveal" data-delay="3">
+      <a href="#salida" class="btn btn--solid"><span class="es">La guía gratuita</span><span class="en">Get the free guide</span> <span class="arrow">→</span></a>
+      <a href="#work" class="btn btn--ghost-light"><span class="es">Ver el trabajo</span><span class="en">See the work</span></a>
+    </div>
+    <div class="hero__loc reveal" data-delay="3">
+      <span class="dot"></span>
+      <span class="es">Actualmente · Bali, Indonesia</span><span class="en">Currently · Bali, Indonesia</span>
+    </div>
+  </div>
+</header>
+
+<!-- SOBRE MÍ -->
+<section class="about section" id="about">
+  <div class="wrap about__grid">
+    <div class="about__portrait ph r45 reveal">
+      <img src="images/diego-retrato.jpg" alt="Diego Larios">
+    </div>
+    <div class="about__body">
+      <p class="eyebrow reveal"><span class="es">Sobre mí</span><span class="en">About</span></p>
+      <h2 class="reveal" data-delay="1"><span class="es">Diseñé una vida que se puede compartir.</span><span class="en">I designed a life worth sharing.</span></h2>
+      <div class="reveal" data-delay="2">
+        <p><span class="es">Soy Diego Larios. Llevo más de ocho años en desarrollo y diseño, y fundé WD&nbsp;Studio Agency — donde construyo soluciones digitales hechas a la medida para cada cliente, desde sitios y branding hasta fotografía y video de propiedades de lujo.</span><span class="en">I'm Diego Larios. I've spent 8+ years in development and design, and I founded WD&nbsp;Studio Agency — where I build custom digital solutions for each client, from websites and branding to luxury real-estate photography and video.</span></p>
+        <p><span class="es">En 2026 tomé una decisión: diseñar mi vida para trabajarla desde cualquier lugar del mundo. Lo hice para demostrar que se puede vivir y trabajar de otra forma — y para abrir la puerta a quien quiera lo mismo. Este sitio es esa historia, y una invitación a caminar la tuya.</span><span class="en">In 2026 I made a decision: to design my life so I could work it from anywhere in the world. I did it to prove there's another way to live and work — and to open the door for anyone who wants the same. This site is that story, and an invitation to walk yours.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LO QUE HAGO -->
+<section class="do section" id="do">
+  <div class="wrap">
+    <div class="do__head reveal">
+      <p class="eyebrow"><span class="es">Lo que hago</span><span class="en">What I do</span></p>
+      <h2><span class="es">Dos formas de trabajar conmigo.</span><span class="en">Two ways to work with me.</span></h2>
+    </div>
+    <div class="do__cols reveal" data-delay="1">
+      <div class="do__card">
+        <span class="num">01 — WD STUDIO</span>
+        <h3><span class="es">Soluciones digitales, hechas a la medida.</span><span class="en">Digital solutions, built to measure.</span></h3>
+        <p><span class="es">Una agencia enfocada en trabajo personalizado, powered by AI. Cada marca, sitio y pieza se diseña desde cero para el cliente que la va a usar.</span><span class="en">An agency focused on custom work, powered by AI. Every brand, site, and asset is designed from scratch for the client who'll use it.</span></p>
+        <div class="tags">
+          <span class="tag"><span class="es">Diseño web</span><span class="en">Web design</span></span>
+          <span class="tag">Branding</span>
+          <span class="tag"><span class="es">Foto & video</span><span class="en">Photo & video</span></span>
+          <span class="tag">AI</span>
+        </div>
+        <a class="go" href="https://wdstudio.agency" target="_blank" rel="noopener"><span class="es">Visitar WD Studio</span><span class="en">Visit WD Studio</span> <span class="arrow">→</span></a>
+      </div>
+      <div class="do__card do__card--salida">
+        <span class="num">02 — MENTORÍA</span>
+        <h3>LA SALIDA.</h3>
+        <p><span class="es">Un programa para latinos que quieren generar ingresos remotos y diseñar una vida con libertad geográfica. Acompañamiento directo, paso a paso.</span><span class="en">A program for Latinos who want to earn remotely and design a life of geographic freedom. Direct, step-by-step mentorship.</span></p>
+        <div class="tags">
+          <span class="tag"><span class="es">Alto nivel</span><span class="en">High-touch</span></span>
+          <span class="tag"><span class="es">Cupo limitado</span><span class="en">Limited spots</span></span>
+          <span class="tag">1:1</span>
+        </div>
+        <a class="go" href="#salida"><span class="es">Conocer LA SALIDA.</span><span class="en">Explore LA SALIDA.</span> <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRABAJO -->
+<section class="work section" id="work">
+  <div class="wrap">
+    <div class="work__head reveal">
+      <div>
+        <p class="eyebrow"><span class="es">Trabajo</span><span class="en">Work</span></p>
+        <h2><span class="es">Hecho desde donde amanezca.</span><span class="en">Made wherever the sun rises.</span></h2>
+      </div>
+      <p class="muted" style="max-width:32ch"><span class="es">Proyectos de WD Studio y la vida que los sostiene, en un mismo lugar.</span><span class="en">WD Studio projects and the life behind them, in one place.</span></p>
+    </div>
+    <div class="gallery reveal" data-delay="1">
+      <figure><div class="ph r34"><img loading="lazy" src="images/DSC_0513.JPG" alt=""></div></figure>
+      <figure><div class="ph r11"><img loading="lazy" src="images/AAJA8391.JPG" alt=""></div></figure>
+      <figure><div class="ph r45"><img loading="lazy" src="images/ny_skate.jpg" alt=""></div></figure>
+      <figure><div class="ph r43"><img loading="lazy" src="images/AFTY6264.JPG" alt=""></div></figure>
+      <figure><div class="ph r34"><img loading="lazy" src="images/DSC_5435.JPG" alt=""></div></figure>
+      <figure><div class="ph r11"><img loading="lazy" src="images/CGTW5727.JPG" alt=""></div></figure>
+      <figure><div class="ph r45"><img loading="lazy" src="images/egypt-tunnel.jpg" alt=""></div></figure>
+      <figure><div class="ph r43"><img loading="lazy" src="images/08110015.JPG" alt=""></div></figure>
+      <figure><div class="ph r34"><img loading="lazy" src="images/DSC_9942.JPG" alt=""></div></figure>
+      <figure><div class="ph r11"><img loading="lazy" src="images/ADKU2555.JPG" alt=""></div></figure>
+      <figure><div class="ph r45"><img loading="lazy" src="images/egypt-film.jpg" alt=""></div></figure>
+      <figure><div class="ph r43"><img loading="lazy" src="images/DSC08048.JPEG" alt=""></div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PRUEBA SOCIAL -->
+<section class="proof section">
+  <div class="wrap">
+    <div class="proof__head reveal">
+      <p class="eyebrow"><span class="es">La prueba</span><span class="en">The proof</span></p>
+      <h2><span class="es">Todo está en el trabajo.</span><span class="en">It's all in the work.</span></h2>
+    </div>
+    <div class="stats reveal" data-delay="1">
+      <div class="stat"><div class="n">8<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Años diseñando</span><span class="en">Years designing</span></div></div>
+      <div class="stat"><div class="n">58<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Proyectos</span><span class="en">Projects</span></div></div>
+      <div class="stat"><div class="n">17<span style="font-size:.5em">+</span></div><div class="l"><span class="es">Países</span><span class="en">Countries</span></div></div>
+    </div>
+    <div class="proof__strip reveal" data-delay="2">
+      <div class="ph r11"><img loading="lazy" src="images/DJI_0396.JPG" alt=""></div>
+      <div class="ph r11"><img loading="lazy" src="images/egypt.jpg" alt=""></div>
+      <div class="ph r11"><img loading="lazy" src="images/ny.jpg" alt=""></div>
+      <div class="ph r11"><img loading="lazy" src="images/hotel-die.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- LA SALIDA -->
+<section class="salida section" id="salida">
+  <div class="wrap salida__grid">
+    <div class="salida__body">
+      <p class="eyebrow reveal"><span class="es">El programa</span><span class="en">The program</span></p>
+      <h2 class="salida__title reveal" data-delay="1">LA&nbsp;SALIDA.</h2>
+      <p class="salida__tag reveal" data-delay="1"><span class="es">La libertad tiene un camino.</span><span class="en">Freedom has a path.</span></p>
+      <p class="salida__for reveal" data-delay="2"><span class="es">Para quienes ya sienten que hay otra forma de vivir.</span><span class="en">For those who already sense there's another way to live.</span></p>
+      <div class="reveal" data-delay="2">
+        <p><span class="es">Tienes las finanzas en orden. Ahora toca darles forma a los sueños. LA SALIDA. es el acompañamiento para generar ingresos remotos con habilidades digitales y financiar la vida que ya ves en tu cabeza — paso a paso, con alguien que ya lo está viviendo.</span><span class="en">Your finances are in order. Now it's time to give shape to your dreams. LA SALIDA. is the mentorship to earn remotely with digital skills and fund the life you already picture — step by step, with someone who's living it.</span></p>
+        <ul class="salida__list">
+          <li><span class="es">La habilidad que te paga la libertad: servicios digitales.</span><span class="en">The skill that pays for freedom: digital services.</span></li>
+          <li><span class="es">Los números reales de vivir viajando.</span><span class="en">The real numbers of living while traveling.</span></li>
+          <li><span class="es">Un plan claro para tu primera salida.</span><span class="en">A clear plan for your first leap.</span></li>
+          <li><span class="es">Acompañamiento directo conmigo. Cupo limitado.</span><span class="en">Direct mentorship with me. Limited spots.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="capture reveal" data-delay="2" id="capture">
+      <form id="guideForm" novalidate>
+        <span class="k"><span class="es">Guía gratuita</span><span class="en">Free guide</span></span>
+        <h3><span class="es">El primer paso, sin costo.</span><span class="en">The first step, free.</span></h3>
+        <p><span class="es">Recibe la guía de libertad geográfica: el sistema, los costos reales y tu plan de 30 días.</span><span class="en">Get the geographic-freedom guide: the system, the real costs, and your 30-day plan.</span></p>
+        <div class="field"><input type="text" name="name" required autocomplete="name" data-ph-es="Nombre" data-ph-en="Name"></div>
+        <div class="field"><input type="email" name="email" required autocomplete="email" data-ph-es="Email" data-ph-en="Email"></div>
+        <div class="field"><input type="tel" name="phone" autocomplete="tel" data-ph-es="WhatsApp (opcional)" data-ph-en="WhatsApp (optional)"></div>
+        <div class="field"><input type="text" name="instagram" data-ph-es="Instagram (opcional)" data-ph-en="Instagram (optional)"></div>
+        <button type="submit" class="btn btn--solid"><span class="es">Recibir la guía</span><span class="en">Send me the guide</span> <span class="arrow">→</span></button>
+        <p class="fine"><span class="es">Solo el primer paso, directo a tu correo.</span><span class="en">Just the first step, straight to your inbox.</span></p>
+      </form>
+      <div class="capture__done">
+        <span class="done-title"><span class="es">¡Vas en camino!</span><span class="en">You're on your way!</span></span>
+        <p><span class="es">Revisa tu correo en los próximos minutos. Tu guía va para allá.</span><span class="en">Check your inbox in a few minutes. Your guide is on the way.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section class="journal section" id="journal">
+  <div class="wrap">
+    <div class="journal__head reveal">
+      <div>
+        <p class="eyebrow">Journal</p>
+        <h2><span class="es">Notas desde el camino.</span><span class="en">Notes from the road.</span></h2>
+      </div>
+      <a class="read" href="#" style="color:var(--stone)"><span class="es">Ver todo</span><span class="en">View all</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="posts reveal" data-delay="1">
+      <a class="post" href="#">
+        <span class="date">Jul 2026 · <span class="es">Ensayo</span><span class="en">Essay</span></span>
+        <h3><span class="es">Cómo te presentas ante un mundo que no te conoce</span><span class="en">How you introduce yourself to a world that doesn't know you</span></h3>
+        <span class="read"><span class="es">Leer</span><span class="en">Read</span> <span class="arrow">→</span></span>
+      </a>
+      <a class="post" href="#">
+        <span class="date">Jun 2026 · <span class="es">Viaje</span><span class="en">Travel</span></span>
+        <h3><span class="es">Cuánto cuesta de verdad vivir viajando</span><span class="en">What it really costs to live while traveling</span></h3>
+        <span class="read"><span class="es">Leer</span><span class="en">Read</span> <span class="arrow">→</span></span>
+      </a>
+      <a class="post" href="#">
+        <span class="date">May 2026 · <span class="es">Oficio</span><span class="en">Craft</span></span>
+        <h3><span class="es">Por qué todo lo que construyo es personalizado</span><span class="en">Why everything I build is custom</span></h3>
+        <span class="read"><span class="es">Leer</span><span class="en">Read</span> <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact section" id="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="es">Contacto</span><span class="en">Contact</span></p>
+    <h2 class="reveal" data-delay="1"><span class="es">¿Construimos algo, o salimos al mundo?</span><span class="en">Shall we build something, or step into the world?</span></h2>
+    <a class="contact__mail reveal" data-delay="1" href="mailto:diego@wdstudio.agency">diego@wdstudio.agency</a>
+    <div class="contact__links reveal" data-delay="2">
+      <a href="https://instagram.com/foreverrjung" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wdstudio.agency" target="_blank" rel="noopener">WD Studio</a>
+      <a href="#salida">LA SALIDA.</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__in">
+    <div class="footer__brand"><b>Diego Larios</b></div>
+    <small><span class="es">© 2026 · Soluciones digitales personalizadas, desde cualquier lugar.</span><span class="en">© 2026 · Custom digital solutions, from anywhere.</span></small>
+  </div>
+</footer>
+
+<script>
+const html=document.documentElement, langBtn=document.getElementById('lang');
+function applyPlaceholders(){
+  const lang=html.getAttribute('data-lang');
+  document.querySelectorAll('input[data-ph-es]').forEach(i=>{
+    i.placeholder = lang==='es' ? i.dataset.phEs : i.dataset.phEn;
+  });
+}
+function setLang(l){
+  html.setAttribute('data-lang',l);
+  html.setAttribute('lang',l);
+  langBtn.textContent = l==='es' ? 'EN' : 'ES';
+  applyPlaceholders();
+}
+langBtn.addEventListener('click',()=> setLang(html.getAttribute('data-lang')==='es'?'en':'es'));
+applyPlaceholders();
+
+const nav=document.getElementById('nav');
+const onScroll=()=>{ nav.classList.toggle('scrolled', window.scrollY>60); };
+onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+const menuBtn=document.getElementById('menuBtn'), mobileMenu=document.getElementById('mobileMenu');
+menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
+document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const form=document.getElementById('guideForm'), capture=document.getElementById('capture');
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const name=form.name.value.trim(), email=form.email.value.trim();
+  const okEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!name || !okEmail){ (!name?form.name:form.email).focus(); return; }
+  /* TODO: conectar a Formspree / tu backend / Typeform aquí. */
+  capture.classList.add('sent');
+});
+</script>
+</body>
+</html>
